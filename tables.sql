@@ -1,8 +1,5 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-drop table if exists game_players;
-
-
 CREATE TABLE IF NOT EXISTS players (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     name VARCHAR(255) NOT NULL
