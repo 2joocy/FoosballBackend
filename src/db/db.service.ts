@@ -105,4 +105,14 @@ export class DbService {
     });
     return mmr.reduce((partialSum, a) => partialSum + a, 0);
   }
+
+  async getPlayerHistory(playerId: string): Promise<Array<GamePlayer>> {
+    const client = await connection.connect();
+    const query = await client.query({
+      text: `SELECT * FROM game_players WHERE player_id = $1;`,
+      values: [playerId],
+    });
+    client.release();
+    return query.rows;
+  }
 }

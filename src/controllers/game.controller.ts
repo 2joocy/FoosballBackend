@@ -51,4 +51,13 @@ export class GameController {
       throw new BadRequestException(error);
     }
   }
+
+  @Get(`/history/:playerId`)
+  async getPlayerHistory(@Param() params: { playerId: string }) {
+    try {
+      return await this.dbService.getPlayerHistory(params.playerId);
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
+  }
 }

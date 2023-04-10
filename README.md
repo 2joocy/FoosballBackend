@@ -58,7 +58,6 @@ The requirements are:
 
 ```
 {
-  playerId: string;
 }
 ```
 
@@ -142,6 +141,29 @@ The requirements are:
 ```
 {
   gameId: string;
+}
+```
+
+##### Output
+
+```
+[
+  {
+    game_id: string;
+    player_id: string;
+    goals: number;
+    was_winner: boolean;
+  }
+]
+
+```
+
+#### `/games/history/playerId` GET
+
+##### Input:
+
+```
+{
 }
 ```
 
