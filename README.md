@@ -118,9 +118,9 @@ The requirements are:
 
 ```
 {
-  playerid: string;
+  playerId: string;
   goals: number;
-  was_winner: boolean;
+  wasWinner: boolean;
 }
 ```
 

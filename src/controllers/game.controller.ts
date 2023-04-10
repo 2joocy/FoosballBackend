@@ -28,7 +28,7 @@ export class GameController {
 
   @Post(`/:gameId/players`)
   async insertPlayerIntoGame(
-    @Body() body: { playerId: string; goals: number; was_winner: boolean },
+    @Body() body: { playerId: string; goals: number; wasWinner: boolean },
     @Param() params: { gameId: string },
   ) {
     try {
@@ -36,7 +36,7 @@ export class GameController {
         params.gameId,
         body.playerId,
         body.goals,
-        body.was_winner,
+        body.wasWinner,
       );
     } catch (error) {
       throw new BadRequestException(error);
