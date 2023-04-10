@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { DbService } from '../db/db.service';
 
 @Controller(`/games`)
@@ -7,7 +14,11 @@ export class GameController {
 
   @Post()
   async createGame(@Body() body: { name: string }) {
-    return await this.dbService.createGame(body.name);
+    try {
+      return await this.dbService.createGame(body.name);
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
   }
 
   @Get()
@@ -20,16 +31,24 @@ export class GameController {
     @Body() body: { playerId: string; goals: number; was_winner: boolean },
     @Param() params: { gameId: string },
   ) {
-    return await this.dbService.insertPlayerIntoGame(
-      params.gameId,
-      body.playerId,
-      body.goals,
-      body.was_winner,
-    );
+    try {
+      return await this.dbService.insertPlayerIntoGame(
+        params.gameId,
+        body.playerId,
+        body.goals,
+        body.was_winner,
+      );
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
   }
 
   @Get(`/:gameId/players`)
   async getGamePlayers(@Param() params: { gameId: string }) {
-    return await this.dbService.getGamePlayers(params.gameId);
+    try {
+      return await this.dbService.getGamePlayers(params.gameId);
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
   }
 }
